@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16.1
+    container_name: postgres-16.1
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    command:
+      "postgres -c 'max_connections=500'"
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+  web:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    container_name: web-dev
+    # Remove the below line if you want to use the default command from Dockerfile
+    # To access localhost for development we have to specify -b 0.0.0.0 in the command
+    # command : "./bin/rails server -b 0.0.0.0 -p 80"
+    # command: "./bin/rails server -p 80"
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+    volumes:
+      - app-storage:/rails/storage
+    depends_on:
+      - db
+    ports:
+      - "80:80"
+
+volumes:
+  postgres_data: {}
+  app-storage: {}
