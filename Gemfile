@@ -58,3 +58,7 @@ end
 
 
 gem "dotenv", "~> 3.1"
+
+gem "overmind", "~> 2.5"
+
+gem "good_job", "~> 4.5"
