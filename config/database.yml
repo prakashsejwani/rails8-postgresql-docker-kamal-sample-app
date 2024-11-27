@@ -1,33 +1,35 @@
 default: &default
-  adapter: "postgresql"
-  encoding: "unicode"
-  username: <%= ENV.fetch("POSTGRES_USER") { "postgres" } %>
-  password: <%= ENV.fetch("POSTGRES_PASSWORD") { "postgres" } %>
-  host: <%= ENV.fetch("POSTGRES_HOST") { "postgres" } if ENV("POSTGRES_HOST") %>
-  port: <%= ENV.fetch("POSTGRES_PORT") { 5432 } %>
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch("POSTGRES_HOST") if ENV['POSTGRES_HOST'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  port: 5432
 
 development:
   <<: *default
-  database: <%= ENV.fetch("POSTGRES_DB") { "sample_app_db" } %>_development
+  database: <%= ENV['POSTGRES_DB'] %>
 
-test:
-  <<: *default
-  database: <%= ENV.fetch("POSTGRES_DB") { "sample_app_db" } %>_test
+# test:
+#   <<: *default
+#   database: <%= ENV['POSTGRES_DB'] %>
 
 production:
   primary: &primary_production
     <<: *default
-    database: <%= ENV.fetch("POSTGRES_DB") { "sample_app_db" } %>_production
+    database: <%= ENV['POSTGRES_DB'] %>
   cache:
     <<: *primary_production
-    database: <%= ENV.fetch("POSTGRES_DB") { "sample_app_db" } %>_production_cache
+    database: rr8_dc_production_cache
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: <%= ENV.fetch("POSTGRES_DB") { "sample_app_db" } %>_production_queue
+    database: rr8_dc_production_queue
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
-    database: <%= ENV.fetch("POSTGRES_DB") { "sample_app_db" } %>_production_cable
+    database: rr8_dc_production_cable
     migrations_paths: db/cable_migrate
