@@ -2,7 +2,7 @@
 service: rr8_pg_kml
 
 # Name of the container image.
-image: jagdishadusumalli/rr8_pg_kml
+image: prakashsejwani/rr8_pg_kml
 
 # Deploy to these servers.
 servers:
@@ -18,14 +18,14 @@ servers:
 #
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
-  ssl: true
+  ssl: false
   host: 139.59.64.20
 
 # Credentials for your image host.
 registry:
   # Specify the registry server, if you're not using Docker Hub
   server: ghcr.io
-  username: jagdishadusumalli
+  username: prakashsejwani
 
   # Always use an access token rather than real password when possible.
   password:
