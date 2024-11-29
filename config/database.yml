@@ -4,9 +4,9 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV.fetch("POSTGRES_HOST") if ENV['POSTGRES_HOST'] %>
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  host: db
+  username: postgres
+  password: postgres
   port: 5432
 
 development:
@@ -20,7 +20,7 @@ development:
 production:
   primary: &primary_production
     <<: *default
-    database: <%= ENV['POSTGRES_DB'] %>
+    database: rr8_pg_kml_prod
   cache:
     <<: *primary_production
     database: rr8_dc_production_cache
