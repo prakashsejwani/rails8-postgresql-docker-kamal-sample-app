@@ -4,23 +4,32 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: rr8_pg_kml-db
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
-  port: 5432
+  host: <%= ENV.fetch("POSTGRES_HOST") if ENV["POSTGRES_HOST"]%>
+  username: <%= ENV.fetch("POSTGRES_USER") if ENV["POSTGRES_USER"] %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") if ENV["POSTGRES_PASSWORD"]%>
 
 development:
-  <<: *default
-  database: <%= ENV['POSTGRES_DB'] %>
+  primary: &primary_dev
+    <<: *default
+    database: <%= ENV.fetch("POSTGRES_DB") if ENV["POSTGRES_DB"] %>_dev
+  cache:
+    <<: *primary_dev
+    database: rr8_dc_dev_cache
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_dev
+    database: rr8_dc_dev_queue
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_dev
+    database: rr8_dc_dev_cable
+    migrations_paths: db/cable_migrate
 
-# test:
-#   <<: *default
-#   database: <%= ENV['POSTGRES_DB'] %>
 
 production:
   primary: &primary_production
     <<: *default
-    database: <%= ENV['POSTGRES_DB'] %>
+    database: <%= ENV.fetch("POSTGRES_DB", "rr8_pg_kml") %>_prod
   cache:
     <<: *primary_production
     database: rr8_dc_production_cache

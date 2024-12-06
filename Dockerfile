@@ -2,8 +2,8 @@
 # check=error=true
 
 # This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
-# docker build -t rr8_pg_kml .
-# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name rr8_pg_kml rr8_pg_kml
+# docker build -t rr8_kamal_pg .
+# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name rr8_kamal_pg rr8_kamal_pg
 
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 
@@ -20,10 +20,9 @@ RUN apt-get update -qq && \
   rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set production environment
-ENV RAILS_ENV="production" \
-  BUNDLE_DEPLOYMENT="1" \
+ENV RAILS_ENV="development" \
   BUNDLE_PATH="/usr/local/bundle" \
-  BUNDLE_WITHOUT="development"
+  BUNDLE_WITHOUT=""
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
@@ -41,6 +40,8 @@ RUN bundle install && \
 
 # Copy application code
 COPY . .
+
+RUN mv .env.docker .env
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
@@ -68,5 +69,6 @@ USER 1000:1000
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start server via Thruster by default, this can be overwritten at runtime
+# comment out the following line to use docker compose
 EXPOSE 80
-CMD ["./bin/thrust", "./bin/rails", "server"]
+CMD ["bundle", "exec", "overmind", "s"]

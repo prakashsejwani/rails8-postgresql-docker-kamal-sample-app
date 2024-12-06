@@ -8,3 +8,15 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+ $primary: #1e8d36;
+
+ @use "bootstrap";
+ 
+ body {
+   padding-top: 56px; /* Adjust this if your navbar height is different */
+   background-color: #f2f2ed;
+   box-sizing: border-box;
+   color: #33322e;
+   letter-spacing: var(--letter-space);
+   margin: 0 auto;
+ }

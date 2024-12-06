@@ -61,4 +61,5 @@ gem "dotenv", "~> 3.1"
 
 gem "overmind", "~> 2.5"
 
-gem "good_job", "~> 4.5"
+gem "bootstrap", "~> 5.3"
+gem 'dartsass-rails'
