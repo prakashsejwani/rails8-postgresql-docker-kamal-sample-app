@@ -7,7 +7,7 @@ image: prakashsejwani/rr8-pg-kml
 # Deploy to these servers.
 servers:
   web:
-    - 139.59.64.20
+  - 139.59.64.20
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -40,6 +40,7 @@ registry:
 env:
   secret:
     - RAILS_MASTER_KEY
+    - POSTGRES_DB
     - POSTGRES_USER
     - POSTGRES_PASSWORD
     - FIREWORKS_AI_API_KEY
@@ -60,6 +61,7 @@ env:
 
     # Match this to any external database server to configure Active Record correctly
     # Use rr8_pg_kml-db for a db accessory server on same machine via local kamal docker network.
+    POSTGRES_HOST: rr8-pg-kml-db
     DB_HOST: rr8-pg-kml-db
 
     # Log everything from Rails

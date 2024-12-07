@@ -21,6 +21,7 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* docker-compose --env-file .env.production -f compose.prod.yml up --build => to run the application in development mode
-
-* docker-compose up --build => to run the application in development mode
+# To run the application in development mode
+* docker-compose --env-file .env.docker up --build 
+# To run the application in production mode
+* docker-compose --env-file .env.docker.prod -f compose.prod.yml up --build
