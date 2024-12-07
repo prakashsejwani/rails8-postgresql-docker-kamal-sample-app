@@ -61,9 +61,8 @@ env:
 
     # Match this to any external database server to configure Active Record correctly
     # Use rr8_pg_kml-db for a db accessory server on same machine via local kamal docker network.
-    POSTGRES_HOST: rr8-pg-kml-db
     DB_HOST: rr8-pg-kml-db
-
+    POSTGRES_HOST: rr8-pg-kml-db
     # Log everything from Rails
     # RAILS_LOG_LEVEL: debug
 
