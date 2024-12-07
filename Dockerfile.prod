@@ -63,4 +63,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 80
-CMD ["bundle", "exec", "rails", "s"]
+CMD ["bundle", "exec", "overmind", "s"]
