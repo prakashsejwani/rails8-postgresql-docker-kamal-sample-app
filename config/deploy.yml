@@ -24,7 +24,7 @@ proxy:
     timeout: 5
   app_port: 3000
   ssl: false
-  host: feedsift.info
+  host: www.feedsift.info
 
 # Credentials for your image host.
 registry:
