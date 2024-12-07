@@ -69,4 +69,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 # Start server via Thruster by default, this can be overwritten at runtime
 # comment out the following line to use docker compose
 EXPOSE 80
-CMD ["bundle", "exec", "rails", "s"]
+CMD ["bundle", "exec", "overmind", "s"]
