@@ -23,7 +23,7 @@ proxy:
     interval: 2
     timeout: 5
   app_port: 3000
-  ssl: true
+  ssl: false
   host: feedsift.info
 
 # Credentials for your image host.
