@@ -10,12 +10,12 @@ default: &default
 
 development:
   <<: *default
-  database: <%= ENV.fetch("POSTGRES_DB", "rr8_pg_kml") %>_dev
+  database: <%= ENV.fetch("POSTGRES_DB") if ENV["POSTGRES_DB"] %>
 
 production:
   primary: &primary_production
     <<: *default
-    database: <%= ENV.fetch("POSTGRES_DB") if ENV["POSTGRES_DB"] %>_prod
+    database: <%= ENV.fetch("POSTGRES_DB") if ENV["POSTGRES_DB"] %>
   cache:
     <<: *primary_production
     database: rr8_dc_production_cache
