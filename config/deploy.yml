@@ -23,7 +23,7 @@ proxy:
     interval: 2
     timeout: 5
   app_port: 3000
-  ssl: false
+  ssl: true
   host: www.feedsift.info
 
 # Credentials for your image host.
@@ -105,7 +105,7 @@ builder:
 # Use accessory services (secrets come from .kamal/secrets).
 accessories:
   db:
-    image: postgres:latest
+    image: postgres:alpine
     host: 139.59.64.20
     # Change to 3306 to expose port to the world instead of just local network.
     port: "127.0.0.1:5432:5432"
