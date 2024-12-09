@@ -26,7 +26,6 @@ proxy:
   #app_port: 3000
   hosts:
     - www.feedsift.info
-    - feedsift.info
   # host: feedsift.info
 
 # Credentials for your image host.
@@ -49,7 +48,10 @@ env:
     - FIREWORKS_AI_API_KEY
     - FIREWORKS_AI_TEXT_API_URL
     - FIREWORKS_AI_IMAGE_API_URL
-    #- OVERMIND_SOCKET
+    - OVERMIND_SOCKET
+    - DB_HOST
+    - POSTGRES_HOST
+    
     #- OVERMIND_PORT
   clear:
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
@@ -64,8 +66,6 @@ env:
 
     # Match this to any external database server to configure Active Record correctly
     # Use rr8_pg_kml-db for a db accessory server on same machine via local kamal docker network.
-    DB_HOST: rr8-pg-kml-db
-    POSTGRES_HOST: rr8-pg-kml-db
     # Log everything from Rails
     # RAILS_LOG_LEVEL: debug
 
