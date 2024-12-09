@@ -23,7 +23,7 @@ proxy:
     interval: 2
     timeout: 5
   ssl: true
-  app_port: 3000
+  #app_port: 3000
   hosts:
     - www.feedsift.info
     - feedsift.info
@@ -49,8 +49,8 @@ env:
     - FIREWORKS_AI_API_KEY
     - FIREWORKS_AI_TEXT_API_URL
     - FIREWORKS_AI_IMAGE_API_URL
-    - OVERMIND_PORT
-    - OVERMIND_SOCKET
+    #- OVERMIND_SOCKET
+    #- OVERMIND_PORT
   clear:
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
     # When you start using multiple servers, you should split out job processing to a dedicated machine.
