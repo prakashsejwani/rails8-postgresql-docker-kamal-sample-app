@@ -22,10 +22,11 @@ proxy:
     path: /up
     interval: 2
     timeout: 5
-  ssl: false
+  ssl: true
   hosts:
     - www.feedsift.info
     - feedsift.info
+    - 139.59.64.20
   # host: feedsift.info
 
 # Credentials for your image host.
