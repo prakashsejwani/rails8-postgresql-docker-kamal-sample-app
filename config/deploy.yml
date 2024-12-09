@@ -22,7 +22,7 @@ proxy:
     path: /up
     interval: 2
     timeout: 5
-  ssl: true
+  ssl: false
   hosts:
     - www.feedsift.info
     - feedsift.info
